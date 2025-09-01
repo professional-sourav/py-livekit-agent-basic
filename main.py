@@ -6,6 +6,7 @@ from livekit.agents import (
     WorkerOptions,
     cli,
     function_tool,
+    llm
 )
 from livekit.plugins import openai, silero
 from dotenv import load_dotenv
@@ -25,7 +26,14 @@ async def lookup_weather(
 async def entrypoint(ctx: JobContext):
     await ctx.connect()
 
+    initial_ctx = llm.ChatContext()
+    initial_ctx.add_message(
+        role="system",
+        content="You are a friendly voice assistant built by LiveKit.",
+    )
+
     agent = Agent(
+        chat_ctx=initial_ctx,
         instructions="You are a friendly voice assistant built by LiveKit.",
         tools=[lookup_weather],
     )
