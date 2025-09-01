@@ -1,0 +1,10 @@
+[project]
+name = "test1"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "livekit>=1.0.12",
+    "livekit-agents[cartesia,deepgram,elevenlabs,openai,silero,turn-detector]~=1.0",
+    "python-dotenv>=1.1.1",
+]
